@@ -1,0 +1,40 @@
+body{
+    background: #191919;
+}
+#header{
+    background: #232323;
+}
+#header #logo{
+    width: 30px;
+}
+#header .nav-link{
+    color: #d7d3d3;
+}
+#formPatients{
+    margin-top: 40px;
+}
+#formPatients .form-group,
+#formPatients .form-check{
+    margin-bottom: 30px;
+}
+#formPatients .form-group label,
+#formPatients .form-check label{
+    color: #fff;
+}
+
+#formPatients .form-group .error,
+#formPatients .form-check .error{
+    color: #b50707;
+}
+
+a.disabled{
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.8;
+}
+a img#trash{
+    width: 30px;
+}
+a img#pencil{
+    width: 30px;
+}

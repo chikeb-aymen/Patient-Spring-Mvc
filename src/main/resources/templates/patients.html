@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>List of Patients</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/main_style.css}"/>
+</head>
+<body>
+    <div layout:fragment="content1">
+
+        <div class="container">
+            <div class="card mt-2">
+
+                <div class="card-header">Patients List</div>
+
+                <div class="card-body">
+
+                    <form method="get" th:action="@{index}">
+
+                        <div class="input-group mb-3">
+
+                            <input type="text" class="form-control"
+                                   placeholder="Search Username"
+                                   name="keyword" th:value="${keyword}"
+                                   aria-label="Search Username"
+                                   aria-describedby="button-addon2"
+                                   style="box-shadow: 0 0 0 0;outline: none;" />
+
+                            <button class="btn btn-outline-secondary" type="submit" id="button" style="box-shadow: 0 0 0 0;outline: none;">Search</button>
+
+                        </div>
+
+                    </form>
+
+                    <table border="1" class="table table-dark table-striped">
+
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date</th>
+                                <th>Sick</th>
+                                <th>Score</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr th:each="p:${patients}">
+                                <td th:text="${p.id}"></td>
+                                <td th:text="${p.username}"></td>
+                                <td th:text="${p.dateOfBirth}"></td>
+                                <td th:text="${p.sick}"></td>
+                                <td th:text="${p.score}"></td>
+                                <td>
+                                    <a onclick="return confirm('Are you sure??')" th:href="@{delete(id=${p.id},keyword=${keyword},page=${currentPage})}">
+                                        <img id="trash" src="/image/trash-bin.png"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a th:href="@{edit(id=${p.id})}">
+                                        <img id="pencil" src="/image/pencil.png"/>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="bg-dark text-white page-link"
+                               th:class="${currentPage - 1 < 0 ? 'bg-dark text-white page-link disabled' : 'bg-dark text-white page-link enabled'}"
+                               th:href="@{index(page=${currentPage - 1},keyword=${keyword})}">Previous</a>
+                        </li>
+                        <li class="page-item" th:each="page,status:${pages}">
+                            <a th:class="${status.index == currentPage ? 'bg-white text-dark page-link' : 'bg-dark text-white page-link'}" th:href="@{index( page=${status.index},keyword=${keyword} ) }" th:text="${status.index+1}">1</a>
+                        </li>
+                        <!--<li class="page-item bg-success  active">
+                            <a class="bg-warning text-danger page-link" href="#">2</a>
+                        </li>-->
+                        <li class="page-item">
+                            <a class="bg-dark text-white page-link"
+                               th:class="${currentPage+1 >= pages.length ? 'bg-dark text-white page-link disabled' : 'bg-dark text-white page-link enabled'}"
+                               th:href="@{index(page=${currentPage+1},keyword=${keyword})}">Next</a>
+                        </li>
+                    </ul>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
