@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -24,8 +26,13 @@ public class PatientController {
     private PatientRepository patientRepository;
 
 
+    @GetMapping
+    public String home(){
+        return "home";
+    }
+
     @GetMapping(path = "/index")
-    public String patients(Model model, @RequestParam(name = "page",defaultValue = "0") int page,@RequestParam(name = "size",defaultValue = "5") int size,@RequestParam(name = "keyword",defaultValue = "") String keyword){
+    public String patients(Model model, @RequestParam(name = "page",defaultValue = "0") int page, @RequestParam(name = "size",defaultValue = "5") int size, @RequestParam(name = "keyword",defaultValue = "") String keyword){
 
         //List<Patient> patients = patientRepository.findAll();
         //Page<Patient> patients = patientRepository.findAll(PageRequest.of(page,size));
@@ -41,6 +48,7 @@ public class PatientController {
         model.addAttribute("nextPage",page+1);
 
         model.addAttribute("keyword",keyword);
+
 
         return "patients";
     }
@@ -107,5 +115,8 @@ public class PatientController {
 
         return "redirect:/index";
     }
+
+
+
 
 }
