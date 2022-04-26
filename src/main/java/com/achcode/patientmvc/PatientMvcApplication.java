@@ -30,22 +30,26 @@ public class PatientMvcApplication implements CommandLineRunner{
     @Override
     public void run(String... args) throws Exception {
         //score decimal min is 100
-        /*patientRepository.save(new Patient("John Wick",new Date(),false,19));
-        patientRepository.save(new Patient("Johnny Depp",new Date(),false,7));
-        patientRepository.save(new Patient("John Doe",new Date(),false,9));
-        patientRepository.save(new Patient("Ach Code",new Date(),false,12));
-        patientRepository.save(new Patient("John Wick",new Date(),false,10));
-        patientRepository.save(new Patient("Johnny Depp",new Date(),false,20));
-        patientRepository.save(new Patient("John Doe",new Date(),false,24));
-        patientRepository.save(new Patient("Ach Code",new Date(),false,56));
+        /*patientRepository.save(new Patient("John Wick",new Date(),false,190));
+        patientRepository.save(new Patient("Johnny Depp",new Date(),false,170));
+        patientRepository.save(new Patient("John Doe",new Date(),false,190));
+        patientRepository.save(new Patient("Ach Code",new Date(),false,120));
+        patientRepository.save(new Patient("John Wick",new Date(),false,100));
+        patientRepository.save(new Patient("Johnny Depp",new Date(),false,120));
+        patientRepository.save(new Patient("John Doe",new Date(),false,124));
+        patientRepository.save(new Patient("Ach Code",new Date(),false,156));
 
         patientRepository.findAll().forEach(p-> System.out.println(p.getUsername()));
          */
 
+
         /*securityService.saveNewUser("aymen","aymen","aymen");
         securityService.saveNewRole("USER","USER ROLE");
         securityService.saveNewRole("ADMIN","ADMIN ROLE");
-        securityService.addRoleToUser("aymen","USER");*/
+        securityService.addRoleToUser("aymen","USER");
+        securityService.saveNewUser("admin","admin","admin");
+        securityService.addRoleToUser("admin","ADMIN");
+        securityService.addRoleToUser("admin","USER");*/
 
     }
 

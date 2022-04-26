@@ -3,8 +3,10 @@ package com.achcode.patientmvc.security;
 import com.achcode.patientmvc.service.SecurityService;
 import com.achcode.patientmvc.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -15,18 +17,33 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
-    @Autowired
+    //@Autowired
+    //@Lazy
     private UserDetailsServiceImpl userDetailsService;
 
+    /**
+     * 4.2 utiliser l'annotation @ Lazy
+     * L'un des moyens les plus simples d'éliminer les dépendances circulaires consiste à retarder le chargement.
+     * Lors de l'injection de dépendances, injectez d'abord des objets proxy, puis créez des objets pour terminer
+     * l'injection lorsqu'ils sont utilisés pour la première fois.
+     * @param userDetailsService
+     */
+    @Autowired
+    public SecurityConfig(@Lazy UserDetailsServiceImpl userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
+
+
         PasswordEncoder passwordEncoder = passwordEncoder();
         //Authentication with user in memory
         //{noop} use password without encoding
@@ -58,7 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests().antMatchers("/delete/**","/edit/**","/editPatient/**","/save/**","/formPatient/**").hasAuthority("ADMIN");
         //http.authorizeRequests().antMatchers("/delete/**","/edit/**","/editPatient/**","/save/**","/formPatient/**").hasRole("ADMIN");
-        http.authorizeRequests().antMatchers("/index/**").hasRole("USER");
+        //http.authorizeRequests().antMatchers("/index/**").hasRole("USER");
+        http.authorizeRequests().antMatchers("/index/**").hasAuthority("USER");
         http.authorizeRequests().antMatchers("/webjars/**").permitAll();
         http.authorizeRequests().anyRequest().authenticated();
         http.exceptionHandling().accessDeniedPage("/403");

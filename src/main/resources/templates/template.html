@@ -28,7 +28,7 @@
                         Patients
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/formPatient}">New</a></li>
+                        <li><a class="dropdown-item" sec:authorize="hasAuthority('ADMIN')" th:href="@{/formPatient}">New</a></li>
                         <li><a class="dropdown-item" th:href="@{/index}">Search</a></li>
                     </ul>
                 </li>

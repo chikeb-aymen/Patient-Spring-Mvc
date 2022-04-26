@@ -44,8 +44,8 @@
                                 <th>Date</th>
                                 <th>Sick</th>
                                 <th>Score</th>
-                                <th sec:authorize="hasRole('ADMIN')"></th>
-                                <th sec:authorize="hasRole('ADMIN')"></th>
+                                <th sec:authorize="hasAuthority('ADMIN')"></th>
+                                <th sec:authorize="hasAuthority('ADMIN')"></th>
                             </tr>
                         </thead>
 
@@ -57,12 +57,12 @@
                                 <td th:text="${p.dateOfBirth}"></td>
                                 <td th:text="${p.sick}"></td>
                                 <td th:text="${p.score}"></td>
-                                <td sec:authorize="hasRole('ADMIN')">
+                                <td sec:authorize="hasAuthority('ADMIN')">
                                     <a onclick="return confirm('Are you sure??')" th:href="@{delete(id=${p.id},keyword=${keyword},page=${currentPage})}">
                                         <img id="trash" src="/image/trash-bin.png"/>
                                     </a>
                                 </td>
-                                <td sec:authorize="hasRole('ADMIN')">
+                                <td sec:authorize="hasAuthority('ADMIN')">
                                     <a th:href="@{edit(id=${p.id})}">
                                         <img id="pencil" src="/image/pencil.png"/>
                                     </a>
