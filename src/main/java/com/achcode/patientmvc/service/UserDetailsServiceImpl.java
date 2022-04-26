@@ -16,7 +16,7 @@ import java.util.Collection;
 
 @Service
 @AllArgsConstructor
-public class    UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     private SecurityService securityService;
 
