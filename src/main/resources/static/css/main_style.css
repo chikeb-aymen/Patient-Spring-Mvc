@@ -38,3 +38,38 @@ a img#trash{
 a img#pencil{
     width: 30px;
 }
+
+
+/*Register*/
+#register .col-md-6{
+    margin: 0 auto;
+}
+
+#register .col-md-6 label{
+    color: #fff;
+    font-size: 18px;
+}
+#register .col-md-6 label.input-group-text{
+    background: #fff;
+    color: #191919;
+}
+#register .mb-3{
+    margin-top: 30px;
+}
+#register .col-md-6 .form-control{
+    box-shadow: 0 0 0 0;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+}
+
+#register .col-md-6 select{
+    box-shadow: 0 0 0 0;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+}
+#register .col-md-6 span{
+    color: #b50707;
+}
+

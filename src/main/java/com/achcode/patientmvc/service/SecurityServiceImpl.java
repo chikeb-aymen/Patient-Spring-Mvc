@@ -26,7 +26,7 @@ public class SecurityServiceImpl implements SecurityService {
 
 
     @Override
-    public Users saveNewUser(String username, String password, String rePassword) {
+        public Users saveNewUser(String username, String password, String rePassword) {
         if(!password.equals(rePassword)) throw new RuntimeException("Passwords not match");
         String hashPass = passwordEncoder.encode(password);
 

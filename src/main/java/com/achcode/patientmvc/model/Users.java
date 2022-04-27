@@ -4,9 +4,14 @@ package com.achcode.patientmvc.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +25,21 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+    //@NotEmpty
+    @Size(min = 4)
     private String username;
 
+    //@NotEmpty
+    //@Size(min = 5,max = 20) TODO : max=20 because password encoder > 20
+    @Size(min = 5)
     private String password;
+
+    //@NotEmpty
+    @Transient
+    private String repeatPassword;
+
+    @Transient
+    private String role;
 
     private boolean active;
 
