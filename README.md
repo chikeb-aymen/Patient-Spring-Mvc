@@ -40,6 +40,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#work-to-do">Work to do</a></li>
       </ul>
     </li>
     <li>
@@ -65,8 +66,8 @@
 <img src="./readmeImages/add_patient.png" width="45%"></img> 
 <img src="./readmeImages/edit_patient.png" width="45%"></img> 
 <img src="./readmeImages/admin_home.png" width="45%"></img>
-
-
+### Work to do
+<img src="./readmeImages/activite_pratique_spring_security.jpg" width="90%"></img>
 
 
 ### Built With
